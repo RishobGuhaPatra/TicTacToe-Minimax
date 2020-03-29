@@ -59,7 +59,7 @@ move_dict = dict(zip(range(1, size ** 2 + 1), tuple_list))
 def make_a_move(board, player):
     run = True
     while run:
-        move = input(f"Select number from 1 to {size ** 2}: ")
+        move = input("Select number from 1 to {size ** 2}: ")
         try:
             move = int(move)
             if 1 <= move <= (size ** 2):
@@ -71,7 +71,7 @@ def make_a_move(board, player):
                 else:
                     print("Sorry this space is occupied.")
             else:
-                print(f"Please input a number within the range 1 to {size ** 2}: ")
+                print("Please input a number within the range 1 to {size ** 2}: ")
         except:
             print("Please type a number: ")
 

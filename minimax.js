@@ -1,3 +1,5 @@
+var random = Math.random(-5,5);
+
 function bestMove() {
     // AI to make its turn
     let bestScore = -Infinity;
@@ -26,7 +28,7 @@ function bestMove() {
     tie: 0
   };
   
-  function minimax(board, depth, isMaximizing) {
+  function minimax(board, depth, isMaximizing, alpha = -Infinity, beta = Infinity) {
     let result = checkWinner();
     if (result !== null) {
       return scores[result];
@@ -39,9 +41,13 @@ function bestMove() {
           // Is the spot available?
           if (board[i][j] == '') {
             board[i][j] = ai;
-            let score = minimax(board, depth + 1, false);
+            let score = minimax(board, depth + 1, false, alpha, beta);
             board[i][j] = '';
             bestScore = max(score, bestScore);
+            alpha = max(alpha, score);
+            if(beta >= alpha){
+              //Nothing
+            }
           }
         }
       }
@@ -53,9 +59,13 @@ function bestMove() {
           // Is the spot available?
           if (board[i][j] == '') {
             board[i][j] = human;
-            let score = minimax(board, depth + 1, true);
+            let score = minimax(board, depth + 1, true, alpha, beta);
             board[i][j] = '';
             bestScore = min(score, bestScore);
+            beta = max(beta, score);
+            if(alpha >= beta){
+              //Nothing
+            }
           }
         }
       }
