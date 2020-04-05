@@ -8,6 +8,7 @@ import random
 
 #create board to store x and o with variable size
 size = int(input("enter size: "))
+player2 = int(input("Enter 1 or 2: AI [1] or Human[2]"))
 #board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 board = []
 
@@ -86,14 +87,24 @@ def playerMove():
 
 def cpuMove():
     run = True
+    rowSize = int((size**2)-1)
     if isFull(board):
         return -1
     while run:
-        move = random.randint(0, (size**2)-1)
-        if spaceFree(move):
-            run = False
-            insert('O', move)
+        bestScore = - math.inf
+        for x in rowSize:
+            # move = x
+            if spaceFree(move):
+                run = False
+                score = minimax(board, 0, false)
+                if score > bestScore:
+                    bestScore = score
+                    insert('O', move)
     return move
+
+def minimax(board, epth, isMaximizing, alpha = -)
+
+
 
 def selectRand():
     pass
@@ -110,25 +121,27 @@ def main():
     print("INITIAL BOARD:\n")
     printBoard(board)
     # run the game
-    while not isFull(board):
-        if not(isWinner(board, 'O')):   # check if CPU has won
-            playerMove()
-            printBoard(board)
-        else:
-            print("Sorry, O is winner!")
-            break
-        if not(isWinner(board, 'X')):   # check if player has won
-            move = cpuMove()
-            if move == -1:
-                print("Tie game!")
-                break
-            else:
-                insert('O', move)
-                print('Computer placed an O in position ', move)
+
+    if player2 == 1:
+        while not isFull(board):
+            if not (isWinner(board, 'O')):  # check if CPU has won
+                playerMove()
                 printBoard(board)
-        else:
-            print("X is the winner. Good job!")
-            break
+            else:
+                print("Sorry, O is winner!")
+                break
+            if not (isWinner(board, 'X')):  # check if player has won
+                move = cpuMove()
+                if move == -1:
+                    print("Tie game!")
+                    break
+                else:
+                    insert('O', move)
+                    print('Computer placed an O in position ', move)
+                    printBoard(board)
+            else:
+                print("X is the winner. Good job!")
+                break
 
     if isFull(board):
         print("Tie game!")

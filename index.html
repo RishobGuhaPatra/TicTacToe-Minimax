@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html>
+  <link rel="stylesheet" href="stylesheet.css">  
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script>
 
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script>
-  
-  <meta charset="utf-8" />
-</head>
+    <meta charset="utf-8" />
+  </head>
 
-<body>
-    <!-- <label for="fname"> Type row/column length: </label> -->
-    <!-- <input type="text" id="n" name="Type row/column length: "><br><br> -->
-  <script src="minimax.js"></script>
-  <script src="sketch.js"></script>
-</body>
+  <body>
+    <div id="error"></div>
+    <form action="/" method="GET">
+      <h1> Tic Tac Toe Min/Max Algorithm</h1>
+      <p>by Rishob and Erika</p>
+      <h2> Please select size of board</h2>
+      <button onclick="changeGrid3()" class="btn success" type="button" id="grid"> 3 by 3</button>
+      <button onclick="changeGrid5()" class="btn success" type="button" id="grid"> 5 by 5</button>
+      <button onclick="changeGrid9()" class="btn success" type="button" id="grid"> 9 by 9</button>
+      <br />
+      <br />
+    </form>
+    <script>
+      function changeGrid3() {
+        window.location.href = "board3.html";
+      }
 
+      function changeGrid5() {
+        window.location.href = "board5.html";
+      }
+
+      function changeGrid9() {
+        window.location.href = "board9.html";
+      }
+    </script>
+  </body>
 </html>
