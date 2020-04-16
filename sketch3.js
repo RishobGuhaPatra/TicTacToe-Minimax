@@ -10,7 +10,7 @@ let board = [
   
   let ai = 'X';
   let human = 'O';
-  let currentPlayer = ai;
+  let currentPlayer = human;
   
   function setup() {
     createCanvas(400, 400);
@@ -75,7 +75,7 @@ let board = [
         currentPlayer = ai;
         bestMove();
       }
-    } 
+    }
   }
   
   function draw() {

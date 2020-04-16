@@ -19,7 +19,7 @@ function bestMove() {
       }
     }
     board[move.i][move.j] = ai;
-    currentPlayer = ai;
+    currentPlayer = human;
   }
   
   let scores = {
