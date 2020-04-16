@@ -17,6 +17,7 @@ function bestMove() {
       // Is the spot available?
       if (board[i][j] == "") {
         board[i][j] = ai;
+        console.log('hello')
         let score = minimax(board, 0, false);
         board[i][j] = "";
         if (score > bestScore) {
@@ -84,6 +85,7 @@ function minimax(
     }
     count = count + 1;
     count = 0;
+    console.log(count);
     return bestScore;
   }
 }
