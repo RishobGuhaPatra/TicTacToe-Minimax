@@ -13,7 +13,7 @@ var random = Math.random(-5,5);
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 5; j++) {
         // Is the spot available?
-        if (board[i][j] == '') {
+        if (board[i][j] == '' && count >= 3) {
           board[i][j] = ai;
           let score = minimax(board, 0, false);
           board[i][j] = '';
@@ -39,7 +39,7 @@ var random = Math.random(-5,5);
       for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
           // Is the spot available?
-          if (board[i][j] == '') {
+          if (board[i][j] == '' && count >= 3) {
             board[i][j] = ai;
             let score = minimax(board, depth + 1, false, alpha, beta);
             board[i][j] = '';

@@ -18,7 +18,7 @@ let board = [
     createCanvas(600, 600);
     w = width / 5;
     h = height / 5;
-    // bestMove();
+    bestMove();
   }
   
   function equals3(a, b, c, d, e) {
@@ -75,7 +75,7 @@ let board = [
       if (board[i][j] == '') {
         board[i][j] = human;
         currentPlayer = human;
-        // bestMove();
+        bestMove();
       }
     }
   }
