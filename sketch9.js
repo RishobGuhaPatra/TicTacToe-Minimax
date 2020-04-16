@@ -16,13 +16,13 @@ let board = [
   
   let ai = 'X';
   let human = 'O';
-  let currentPlayer = human;
+  let currentPlayer = ai;
   
   function setup() {
     createCanvas(900, 900);
     w = width / 9;
     h = height / 9;
-    // bestMove();
+    bestMove();
   }
   
   function equals3(a, b, c, d, e, f, g, h, i) {
@@ -78,8 +78,8 @@ let board = [
       // If valid turn
       if (board[i][j] == '') {
         board[i][j] = human;
-        currentPlayer = human;
-        // bestMove();
+        currentPlayer = ai;
+        bestMove();
       }
     }
   }

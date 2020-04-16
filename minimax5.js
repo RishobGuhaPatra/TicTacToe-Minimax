@@ -17,6 +17,7 @@ function bestMove() {
       if (board[i][j] == "") {
         board[i][j] = ai;
         console.log('i')
+        count = 0;
         let score = minimax(board, 0, false);
         board[i][j] = "";
         if (score >= bestScore) {
@@ -47,7 +48,7 @@ function minimax(
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 5; j++) {
         // Is the spot available?
-        if (board[i][j] == '' && count <= 125) {
+        if (board[i][j] == '' && count <= 300) {
           board[i][j] = ai;
           count = count + 1;
           let score = minimax(board, depth + 1, false, alpha, beta);
@@ -68,7 +69,7 @@ function minimax(
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 5; j++) {
         // Is the spot available?
-        if (board[i][j] == '' && count <= 125) {
+        if (board[i][j] == '' && count <= 300) {
           board[i][j] = human;
           count = count + 1;
           let score = minimax(board, depth + 1, true, alpha, beta);
