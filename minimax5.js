@@ -1,77 +1,89 @@
-var random = Math.random(-5,5);
-  
-  let scores = {
-    X: 10,
-    O: -10,
-    tie: 0
-  };
-  
-  function bestMove() {
-    // AI to make its turn
-    let bestScore = -Infinity;
-    let move;
-    for (let i = 0; i < 5; i++) {
-      for (let j = 0; j < 5; j++) {
-        // Is the spot available?
-        if (board[i][j] == '') {
-          board[i][j] = ai;
-          let score = minimax(board, 0, false);
-          board[i][j] = '';
-          if (score > bestScore) {
-            bestScore = score;
-            move = {i,j};
-          }
+var random = Math.random(-5, 5);
+
+let scores = {
+  X: 10,
+  O: -10,
+  tie: 0,
+};
+
+var count = 0;
+
+function bestMove() {
+  // AI to make its turn
+  let bestScore = -Infinity;
+  let move;
+  for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 5; j++) {
+      // Is the spot available?
+      if (board[i][j] == "") {
+        board[i][j] = ai;
+        let score = minimax(board, 0, false);
+        board[i][j] = "";
+        if (score > bestScore) {
+          bestScore = score;
+          move = { i, j };
         }
       }
     }
-    board[move.i][move.j] = ai;
-    currentPlayer = human;
+  }
+  board[move.i][move.j] = ai;
+  currentPlayer = human;
+}
+
+function minimax(
+  board,
+  depth,
+  isMaximizing,
+  alpha = -Infinity,
+  beta = Infinity
+) {
+  let result = checkWinner();
+  if (result !== null) {
+    return scores[result];
   }
 
-  function minimax(board, depth, isMaximizing, alpha = -Infinity, beta = Infinity) {
-    let result = checkWinner();
-    if (result !== null) {
-      return scores[result];
-    }
-  
-    if (isMaximizing) {
-      let bestScore = -Infinity;
+  if (isMaximizing) {
+    let bestScore = -Infinity;
+    if (count <= 3) {
       for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
           // Is the spot available?
-          if (board[i][j] == '' && count <= 6) {
+          if (board[i][j] == "" && count <= 3) {
             board[i][j] = ai;
             let score = minimax(board, depth + 1, false, alpha, beta);
-            board[i][j] = '';
+            board[i][j] = "";
             bestScore = max(score, bestScore);
             alpha = max(alpha, score);
-            if(beta >= alpha){
+            if (beta >= alpha) {
               //Nothing
             }
-            count = count + 1;
           }
         }
       }
-      return bestScore;
-    } else {
-      let bestScore = Infinity;
+    }
+    count = count + 1;
+    return bestScore;
+  } else {
+    let bestScore = Infinity;
+    if (count <= 3) {
       for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
           // Is the spot available?
-          if (board[i][j] == '' && count <= 6) {
+          if (board[i][j] == "") {
             board[i][j] = human;
             let score = minimax(board, depth + 1, true, alpha, beta);
-            board[i][j] = '';
+            board[i][j] = "";
             bestScore = min(score, bestScore);
             beta = max(beta, score);
-            if(alpha >= beta){
+            if (alpha >= beta) {
               //Nothing
             }
-            count = count + 1;
           }
         }
       }
-      count = 0;
-      return bestScore;
     }
+    count = count + 1;
+    count = 0;
+    return bestScore;
   }
+}

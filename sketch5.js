@@ -74,7 +74,7 @@ let board = [
       // If valid turn
       if (board[i][j] == '') {
         board[i][j] = human;
-        currentPlayer = human;
+        currentPlayer = ai;
         bestMove();
       }
     }
