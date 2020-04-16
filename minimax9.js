@@ -17,7 +17,7 @@ var random = Math.random(-5,5);
           board[i][j] = ai;
           let score = minimax(board, 0, false);
           board[i][j] = '';
-          if (score > bestScore) {
+          if (score >= bestScore) {
             bestScore = score;
             move = {i,j};
           }

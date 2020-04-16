@@ -12,7 +12,7 @@ let board = [
   
   let ai = 'X';
   let human = 'O';
-  let currentPlayer = human;
+  let currentPlayer = ai;
   
   function setup() {
     createCanvas(600, 600);

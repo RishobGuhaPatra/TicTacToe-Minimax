@@ -5,7 +5,6 @@ let scores = {
   O: -10,
   tie: 0,
 };
-
 var count = 0;
 
 function bestMove() {
@@ -17,10 +16,10 @@ function bestMove() {
       // Is the spot available?
       if (board[i][j] == "") {
         board[i][j] = ai;
-        console.log('hello')
+        console.log('i')
         let score = minimax(board, 0, false);
         board[i][j] = "";
-        if (score > bestScore) {
+        if (score >= bestScore) {
           bestScore = score;
           move = { i, j };
         }
@@ -45,46 +44,45 @@ function minimax(
 
   if (isMaximizing) {
     let bestScore = -Infinity;
-    if (count <= 3) {
-      for (let i = 0; i < 5; i++) {
-        for (let j = 0; j < 5; j++) {
-          // Is the spot available?
-          if (board[i][j] == "" && count <= 3) {
-            board[i][j] = ai;
-            let score = minimax(board, depth + 1, false, alpha, beta);
-            board[i][j] = "";
-            bestScore = max(score, bestScore);
-            alpha = max(alpha, score);
-            if (beta >= alpha) {
-              //Nothing
-            }
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 5; j++) {
+        // Is the spot available?
+        if (board[i][j] == '' && count <= 125) {
+          board[i][j] = ai;
+          count = count + 1;
+          let score = minimax(board, depth + 1, false, alpha, beta);
+          board[i][j] = "";
+          bestScore = max(score, bestScore);
+          alpha = max(alpha, score);
+          if (beta >= alpha) {
+            //Nothing
           }
+          //count = count + 1;
         }
       }
     }
-    count = count + 1;
+
     return bestScore;
   } else {
     let bestScore = Infinity;
-    if (count <= 3) {
-      for (let i = 0; i < 5; i++) {
-        for (let j = 0; j < 5; j++) {
-          // Is the spot available?
-          if (board[i][j] == "") {
-            board[i][j] = human;
-            let score = minimax(board, depth + 1, true, alpha, beta);
-            board[i][j] = "";
-            bestScore = min(score, bestScore);
-            beta = max(beta, score);
-            if (alpha >= beta) {
-              //Nothing
-            }
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 5; j++) {
+        // Is the spot available?
+        if (board[i][j] == '' && count <= 125) {
+          board[i][j] = human;
+          count = count + 1;
+          let score = minimax(board, depth + 1, true, alpha, beta);
+          board[i][j] = "";
+          bestScore = min(score, bestScore);
+          beta = max(beta, score);
+          if (alpha >= beta) {
+            //Nothing
           }
+          //count = count + 1;
         }
       }
     }
-    count = count + 1;
-    count = 0;
+    //count = 0;
     console.log(count);
     return bestScore;
   }
