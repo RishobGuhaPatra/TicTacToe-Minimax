@@ -79,10 +79,6 @@ function checkWinner() {
 
 function turnCheck() {
   if (currentPlayer == human) {
-    // Human make turn
-    // let i = floor(mouseX / w);
-    // let j = floor(mouseY / h);
-    // If valid turn
     if (board[i][j] == '') {
       currentPlayer = ai;
       bestMove();

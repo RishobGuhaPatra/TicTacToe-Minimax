@@ -15,10 +15,23 @@ let board = [
   let currentPlayer = ai;
   
   function setup() {
-    createCanvas(600, 600);
+    createCanvas(400, 400);
     w = width / 5;
     h = height / 5;
-    bestMove();
+    
+    let emptySpots = 0;
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 5; j++) {
+        if (board[i][j] == '') {
+          emptySpots++;
+          bestMove();
+          bestMove2();
+          bestMove();
+          bestMove2();
+        }
+      }
+    }
+    
   }
   
   function equals3(a, b, c, d, e) {
@@ -66,16 +79,15 @@ let board = [
     }
   }
   
-  function mousePressed() {
+  function turnCheck() {
     if (currentPlayer == human) {
-      // Human make turn
-      let i = floor(mouseX / w);
-      let j = floor(mouseY / h);
-      // If valid turn
       if (board[i][j] == '') {
-        board[i][j] = human;
         currentPlayer = ai;
         bestMove();
+      }
+      if (board[i][j] == '') {
+        currentPlayer = human;
+        bestMove2();
       }
     }
   }
