@@ -11,8 +11,8 @@ function bestMove() {
   // AI to make its turn
   let bestScore = -Infinity;
   let move;
-  for (let i = 0; i < 5; i++) {
-    for (let j = 0; j < 5; j++) {
+  for (let i = 0; i < 7; i++) {
+    for (let j = 0; j < 7; j++) {
       // Is the spot available?
       if (board[i][j] == "") {
         board[i][j] = ai;
@@ -45,8 +45,8 @@ function minimax(
 
   if (isMaximizing) {
     let bestScore = -Infinity;
-    for (let i = 0; i < 5; i++) {
-      for (let j = 0; j < 5; j++) {
+    for (let i = 0; i < 7; i++) {
+      for (let j = 0; j < 7; j++) {
         // Is the spot available?
         if (board[i][j] == '' && count <= 1000) {
           board[i][j] = ai;
@@ -66,8 +66,8 @@ function minimax(
     return bestScore;
   } else {
     let bestScore = Infinity;
-    for (let i = 0; i < 5; i++) {
-      for (let j = 0; j < 5; j++) {
+    for (let i = 0; i < 7; i++) {
+      for (let j = 0; j < 7; j++) {
         // Is the spot available?
         if (board[i][j] == '' && count <= 1000) {
           board[i][j] = human;
