@@ -31,6 +31,31 @@ function bestMove() {
   currentPlayer = human;
 }
 
+function bestMove2() {
+  // AI to make its turn
+
+  let bestScore = -Infinity;
+  let move;
+
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      // Is the spot available?
+      if (board[i][j] == '') {
+        board[i][j] = human;
+        console.log('i')
+        let score = minimax(board, 0, true);
+        board[i][j] = '';
+        if (score >= bestScore) {
+          bestScore = score;
+          move = { i, j };
+        }
+      }
+    }
+  }
+  board[move.i][move.j] = human;
+  currentPlayer = ai;
+}
+
 function minimax(
   board,
   depth,
@@ -48,7 +73,7 @@ function minimax(
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
         // Is the spot available?
-        if (board[i][j] == '' && count <= 200) {
+        if (board[i][j] == '' && count <= 4000) {
           board[i][j] = ai;
           count = count + 1;
           let score = minimax(board, depth + 1, false, alpha, beta);
@@ -69,7 +94,7 @@ function minimax(
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
         // Is the spot available?
-        if (board[i][j] == '' && count <= 200) {
+        if (board[i][j] == '' && count <= 4000) {
           board[i][j] = human;
           count = count + 1;
           let score = minimax(board, depth + 1, true, alpha, beta);
