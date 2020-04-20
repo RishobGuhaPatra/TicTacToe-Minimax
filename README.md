@@ -12,7 +12,7 @@ This is a tic tac toe game that can be played against itself and played against 
   4. Click index.html
   5. Browser should open the game
   
-##AI vs AI
+## AI vs AI
   1. Click the green download zip folder above. 
   2. Open the downloaded zip folder
   3. Open "TicTacToe-Minimax AI vs AI" folder
